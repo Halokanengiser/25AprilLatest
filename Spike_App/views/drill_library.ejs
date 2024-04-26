@@ -1,0 +1,84 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drill Library</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/ryfHBxP/Spike-logos-1.png">
+</head>
+
+<body>
+    <nav>
+        <div id="logo1">
+            <a href="/"><img src="https://i.ibb.co/ryfHBxP/Spike-logos-1.png" alt="Logo" id="logo"></a>
+        </div>
+        <div id="navigation-items">
+            <button class="dropbtn"><a href="/drill_library">Drill Library</a></button>
+            <% if(isAuthenticated) { %>
+            <div class="dropdown">
+                <button class="dropbtn"><a href="/practice_plans">Practice Plans</a></button>
+                <div class="dropdown-content">
+                    <a href="/practice_plans">Open Plan</a>
+                    <a href="/create_plan">Create Plan</a>
+                </div>
+            </div>
+            <% } %>
+            <% if(!isAuthenticated) { %>
+            <a href="/login/">Login</a>
+            <% } else { %>
+            <a href="/logout/">Logout</a>
+            <% } %>
+        </div>
+    </nav>
+
+    <section class="L1">
+        <div class="leftcontent">
+            <h1 class="L1h1">DRILLS BY CATEGORY</h1>
+            <input type="text" id="searchInput" placeholder="Search drills...">
+            <ul id="results"></ul>
+
+            <div class="listdrill">
+                <ul>
+                    <li><a href="#" onclick="filterByCategory('Attacking')">Attacking</a></li>
+                    <li><a href="#" onclick="filterByCategory('Ball Control')">Ball Control</a></li>
+                    <li><a href="#" onclick="filterByCategory('6 V 6')">6 V 6</a></li>
+                    <li><a href="#" onclick="filterByCategory('Back Row Attacking')">Back Row Attacking</a></li>
+                    <li><a href="#" onclick="filterByCategory('Ball Control')">Ball Control</a></li>
+                    <li><a href="#" onclick="filterByCategory('Blocking')">Blocking</a></li>
+                    <li><a href="#" onclick="filterByCategory('Butterfly')">Butterfly</a></li>
+                    <li><a href="#" onclick="filterByCategory('CLA')">CLA</a></li>
+                    <li><a href="#" onclick="filterByCategory('Competition')">Competition</a></li>
+                    <li><a href="#" onclick="filterByCategory('Defense')">Defense</a></li>
+                    <li><a href="#" onclick="filterByCategory('Forearm Passing')">Forearm Passing</a></li>
+                    <li><a href="#" onclick="filterByCategory('IFTE')">IFTE</a></li>
+                    <li><a href="#" onclick="filterByCategory('Middles')">Middles</a></li>
+                    <li><a href="#" onclick="filterByCategory('Overhead Passing')">Overhead Passing</a></li>
+                    <li><a href="#" onclick="filterByCategory('Outside Hitters')">Outside Hitters</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="card-container">
+        <% drills.forEach(drill => { %>
+        <div class="card">
+            <div class="card-image">
+                <a href="/drill_view/<%= drill.drillId %>">
+                    <img src=<%= drill.link %> alt="drill" class="drill-img">
+                </a>
+            </div>
+            <div class="card-info">
+                <a href="/drill_view/<%= drill.drillId %>" class="drill-link">
+                    <h2 class="drillname"><%= drill.name %></h2>
+                </a>
+                <p class="category"><strong>Categories:</strong> <%= drill.category %></p>
+            </div>
+        </div>
+        <% }); %>
+    </section>
+    <script src="/js/searchDrills.js"></script>
+    <script src="/js/nav_holder.js"></script>
+</body>
+
+</html>

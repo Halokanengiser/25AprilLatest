@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Spike App - Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/ryfHBxP/Spike-logos-1.png">
+</head>
+
+<body>
+
+    <nav>
+        <div id="logo1">
+            <a href="/"><img src="https://i.ibb.co/ryfHBxP/Spike-logos-1.png" alt="Logo" id="logo"></a>
+        </div>
+        <div id="navigation-items">
+            <button class="dropbtn"><a href="/drill_library">Drill Library</a></button>
+            <% if(isAuthenticated) { %>
+            <div class="dropdown">
+                <button class="dropbtn"><a href="/practice_plans">Practice Plans</a></button>
+                <div class="dropdown-content">
+                    <a href="/practice_plans">Open Plan</a>
+                    <a href="/create_plan">Create Plan</a>
+                </div>
+            </div>
+            <% } %>
+            <% if(!isAuthenticated) { %>
+            <a href="/login/">Login</a>
+            <% } else { %>
+            <a href="/logout/">Logout</a>
+            <% } %>
+        </div>
+    </nav>
+
+    <section class="header-section">
+        <header>
+            <h1 class="practice-plan-header">Practice Plans</h1>
+        </header>
+        <p class="practice-plan-date">[ <%= numOfPlans %> /10 Practice Plans Used]</p>
+    </section>
+
+
+
+    <section class="practice-plan-container">
+        <% practicePlans.forEach(plan => { %>
+        <div class="practice-line-container">
+            <a href="/view_plan/<%= plan.plan_number %>">
+                <div class="practice-line">
+                    <div class="column">
+                        <div class="label">Practice Plan <%= plan.plan_number %></div>
+                        <div class="value">Date Created: <%= plan.date_created %></div>
+                    </div>
+                </div>
+            </a>
+            <div class="edit-icon">
+                <button class="delete-btn" data-plan-number="<%= plan.plan_number %>">Delete</button>
+                <a href="/share_plan/<%= plan.plan_number %>">
+                    <button>Share</button>
+                </a>
+            </div>
+        </div>
+        <hr class="line">
+        <% }) %>
+
+        <a href="/create_plan">
+            <button id="create-plan" class="edit-button">Create Plan</button>
+        </a>
+    </section>
+
+    <!-- Popup Overlay Window -->
+    <div id="delete-plan-overlay" class="overlay">
+        <div class="popup">
+            <p>Are you sure you want to delete this practice plan? This action cannot be reversed.</p>
+            <div class="button-container">
+                <button id="cancel-delete">Cancel</button>
+                <button id="confirm-delete">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            const overlay = document.getElementById('delete-plan-overlay');
+            const cancelButton = document.getElementById('cancel-delete');
+            const confirmButton = document.getElementById('confirm-delete');
+
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    overlay.style.display = 'block';
+                });
+            });
+
+            cancelButton.addEventListener('click', function () {
+                overlay.style.display = 'none';
+            });
+
+            // You can handle the deletion process when the user clicks "Continue"
+            confirmButton.addEventListener('click', function () {
+                // Perform deletion logic here
+                // You can retrieve the plan number from the button's data attribute
+                const planNumber = this.getAttribute('data-plan-number');
+                // Example deletion logic
+                // You can replace this with your actual deletion logic
+                console.log('Deleting plan number:', planNumber);
+
+                // Close the overlay
+                overlay.style.display = 'none';
+            });
+        });
+    </script>
+    <script src="/js/nav_holder.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,240 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Spike App - Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+      <link rel="icon" type="image/png" href="https://i.ibb.co/ryfHBxP/Spike-logos-1.png">
+</head>
+
+<body>
+
+    <nav>
+        <div id="logo1">
+            <a href="/"><img src="https://i.ibb.co/ryfHBxP/Spike-logos-1.png" alt="Logo" id="logo"></a>
+        </div>
+        <div id="navigation-items">
+            <button class="dropbtn"><a href="/drill_library">Drill Library</a></button>
+            <% if(isAuthenticated) { %>
+            <div class="dropdown">
+                <button class="dropbtn"><a href="/practice_plans">Practice Plans</a></button>
+                <div class="dropdown-content">
+                    <a href="/practice_plans">Open Plan</a>
+                    <a href="/create_plan">Create Plan</a>
+                </div>
+            </div>
+            <% } %>
+            <% if(!isAuthenticated) { %>
+            <a href="/login/">Login</a>
+            <% } else { %>
+            <a href="/logout/">Logout</a>
+            <% } %>
+        </div>
+    </nav>
+
+    <section id ="startFromHere">
+        <header>
+            <h1 class="practice-plan-header">Practice Plan <%= plan_number %></h1>
+        </header>
+        <p class="practice-plan-date">Date Created: <%= plan.date_created %></p>
+
+
+    <% plan.drills.forEach( drill => { %>
+    <section class="practice-plan-container">
+        <div class="practice-line-container">
+            <div class="practice-line">
+                <div class="column">
+                    <div class="label">Time:</div>
+                    <div class="value">9:00 AM</div>
+                </div>
+                <div class="column">
+                    <div class="label">Activity:</div>
+                    <div class="value"><a href="/drill_view/<%= drill.drillId %>"><%= drill.name %></div> <!--made changes to this to follow path of the drill for drill info     -->
+                </div>
+                <div class="column">
+                    <div class="label">Duration:</div>
+                    <div class="value"><%= drill.time %> mins</div>
+                    <button id="edit-drill-duration" class="item-edit" style="display: none;">Edit</button>
+                </div>
+                <div class="column">
+                    <div class="label">Scoring:</div>
+                    <div class="value"><%= drill.scoring %></div>
+                    <button id="edit-drill-scoring" class="item-edit" style="display: none;">Edit</button>
+                </div>
+                <div class="column">
+                    <div class="label">Behaviors:</div>
+                    <div class="value"><%= drill.behaviors %></div>
+                    <button id="edit-drill-behaviors" class="item-edit" style="display: none;">Edit</button>
+                </div>
+            </div>
+            <div class="edit-icon">
+                <button id="edit-drill" style="display: none;">Edit Drill</button>
+            </div>
+        </div>
+    </section>
+    <% }) %>
+
+    <!-- Pop up window to get input to edit scoring, duration and behaviors for drills -->
+    <div id="overlay" class="overlay"></div>
+
+    <div id="popup-container" class="popup-container">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <h2>Edit Drill</h2>
+            <input type="text" id="edit-input" class="edit-input" placeholder="Enter new value">
+            <button id="save-button" class="save-drill-btn item-edit">Save</button>
+        </div>
+    </div>
+<!--<button onclick="generatePDF()">Generate PDF</button>-->
+
+
+    <div class="add-icon" id="add-drill" style="display: none;">
+        <a href="#"><img src="https://i.ibb.co/k6y4wPd/add-icon.png" alt="Add Drill"></a>
+    </div>
+
+    <!-- Popup Window to confirm changes made to practice plan -->
+    <div id="popup-overlay" class="popup-overlay">
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <p>Changes made to practice plans are permanent and cannot be undone.</p>
+                <p>Would you like to continue?</p>
+                <button id="cancel-btn" class="popup-button">No, Cancel</button>
+                <a href="/view_plan/<%= plan_number %>">
+                    <!-- This should take the user back to the original drill view. Prior to this you need to capture all the edits made to the drills -->
+                    <button id="continue-btn" class="popup-button">Yes, Continue</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <button id="edit-plan" class="edit-button">Edit Plan</button>
+    <button id="delete-plan" class="delete-button">Delete Plan</button>
+  <!--  <button id="share-plan" class="share-button">Share Plan</button>-->
+  <button class="share-button" id="shareButton">Share</button>
+    <a href="/view_plan/<%= plan_number %>">
+        <button id="cancel-edit" class="default-button cancel" style="display: none;">Cancel</button>
+    </a>
+    <button id="save-plan" class="share-button save" style="display: none !important;">Save</button>
+
+</section>
+
+    <script>
+        // Add an event listener to the "Edit Plan" button
+        document.getElementById('edit-plan').addEventListener('click', function () {
+            document.getElementById('add-drill').style.display = 'block';
+            document.getElementById('edit-drill').style.display = 'block';
+            document.getElementById('save-plan').style.display = 'block';
+            document.getElementById('cancel-edit').style.display = 'block';
+            document.getElementById('share-plan').style.display = 'none';
+            document.getElementById('delete-plan').style.display = 'none';
+            document.getElementById('edit-plan').style.display = 'none';
+        });
+
+        // Add an event listener to the "Edit Drill" button
+        document.getElementById('edit-drill').addEventListener('click', function () {
+            document.getElementById('edit-drill-scoring').style.display = 'block';
+            document.getElementById('edit-drill-behaviors').style.display = 'block';
+            document.getElementById('edit-drill-duration').style.display = 'block';
+        });
+
+
+        // JS FOR EDITING DRILL VALUES
+        // Get all edit buttons
+        var editButtons = document.querySelectorAll('.item-edit');
+
+        // Get the overlay and popup container
+        var overlay = document.getElementById('overlay');
+        var popupContainer = document.getElementById('popup-container');
+
+        // Get the input field inside the popup
+        var editInput = document.getElementById('edit-input');
+
+        // Function to show popup and overlay
+        function showPopup() {
+            overlay.style.display = 'block';
+            popupContainer.style.display = 'block';
+            document.body.classList.add('popup-active'); // add class to disable scrolling
+        }
+
+        // Function to hide popup and overlay
+        function hidePopup() {
+            overlay.style.display = 'none';
+            popupContainer.style.display = 'none';
+            document.body.classList.remove('popup-active'); // remove class to enable scrolling
+        }
+
+        // Function to handle edit button click
+        function handleEditClick(event) {
+            // Show the popup
+            showPopup();
+
+            // Get the value of the clicked item
+            var value = event.target.parentNode.querySelector('.value').textContent;
+
+            // Set the value in the input field
+            editInput.value = value;
+        }
+
+        // Attach click event listeners to all edit buttons
+        editButtons.forEach(function (button) {
+            button.addEventListener('click', handleEditClick);
+        });
+
+        // Function to handle close button click
+        document.querySelector('.close').addEventListener('click', hidePopup);
+
+        // Function to handle save button click
+        document.getElementById('save-button').addEventListener('click', function () {
+            // Get the new value from the input field
+            var newValue = editInput.value;
+
+            // Update the corresponding value in the UI
+            document.querySelector('.value').textContent = newValue;
+
+            // Hide the popup
+            hidePopup();
+        });
+
+        // Close popup when clicking outside the popup
+        overlay.addEventListener('click', function (event) {
+            if (event.target === overlay) {
+                hidePopup();
+            }
+        });
+
+        //Generate pdf function down below
+        function generatePDF() {
+          var element = document.getElementById("startFromHere"); // Select the starting point of the content to convert to PDF
+          var opt = {
+              margin: [1, 0.5, 1, 0.5], // top, left, bottom, right margin in inches
+              filename: 'practice-plan.pdf',
+              image: { type: 'jpeg', quality: 0.98 }, // Use JPEG for better color handling with high quality
+              html2canvas: { scale: 2 }, // Improves the resolution of the output PDF
+              jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+          };
+
+          html2pdf().set(opt).from(element).save().then(function () {
+              console.log("PDF generated!");
+              window.location.href = '/share_plan/<%= plan.plan_number %>'; // Optionally redirect after saving the PDF
+          }).catch(function(error) {
+              console.error("Failed to generate PDF: ", error);
+          });
+      }
+      document.getElementById("shareButton").addEventListener("click", function() {
+  generatePDF(); // Call the generatePDF function
+});
+
+    </script>
+    <script src="/js/nav_holder.js"></script>
+</body>
+
+</html>
+
+
+
+
+<!-- TO DO LIST: -->
+<!-- 1. The drill is not updating with the new input value. The input value is not being saved to the drill. -->

@@ -1,0 +1,203 @@
+{
+    "practice_plans": [{
+            "plan_number":1,
+            "date_created": "2020-10-10",
+            "drills": [{
+                    "drillId":10,
+                    "name": "20-23/23-20/22-22",
+                    "category": "6 v 6",
+                    "level": "JV",
+                    "numberOfPlayers": "12+",
+                    "time": "15",
+                    "focus": "End of set situations",
+                    "description": "Compete with end of set situations, ahead, behind and tied.",
+                    "scoring": "Win 2 out of 3 to get big point",
+                    "behaviors": "",
+                    "notesVariations": "· Starting who serves can create an advantage or disadvantage depending on the age. At younger ages the team with the serve may have the advantage. At older ages the team in receive first may have an advantage. · Can change the scores to change the situation. For example 20-22, 22-20, 23-23. · If a team wins all three award an extra point (2 points total) · Allow teams 1 time out each for each set. · Manipulate rotations to give team an advantage or a disadvantage",
+                    "keywords": "6 v 6, Game Situations",
+                    "stepByStep": "1. Start off a serve with one team at 20 points and the other at 23. 2. Complete the set to 25, win by 2. 3. Start second set reversing the score to start. 4. Complete the set to 25, win by 2. 5. Start 3rd set with score ties 22-22. 6. Complete the set to 25, win by 2"
+                }
+            ]
+        },
+        {
+            "plan_number":2,
+            "date_created": "2022-10-15",
+            "drills": [{
+                    "drillId":10,
+                    "name": "20-23/23-20/22-22",
+                    "category": "6 v 6",
+                    "level": "JV",
+                    "numberOfPlayers": "12+",
+                    "time": "15",
+                    "focus": "End of set situations",
+                    "description": "Compete with end of set situations, ahead, behind and tied.",
+                    "scoring": "Win 2 out of 3 to get big point",
+                    "behaviors": "",
+                    "notesVariations": "· Starting who serves can create an advantage or disadvantage depending on the age. At younger ages the team with the serve may have the advantage. At older ages the team in receive first may have an advantage. · Can change the scores to change the situation. For example 20-22, 22-20, 23-23. · If a team wins all three award an extra point (2 points total) · Allow teams 1 time out each for each set. · Manipulate rotations to give team an advantage or a disadvantage",
+                    "keywords": "6 v 6, Game Situations",
+                    "stepByStep": "1. Start off a serve with one team at 20 points and the other at 23. 2. Complete the set to 25, win by 2. 3. Start second set reversing the score to start. 4. Complete the set to 25, win by 2. 5. Start 3rd set with score ties 22-22. 6. Complete the set to 25, win by 2"
+                }
+            ]
+        },
+        {
+            "plan_number":3,
+            "date_created": "2023-03-20",
+            "drills": [{
+                    "drillId":11,
+                    "name": "Passing Warm-Up",
+                    "category": "Individual",
+                    "level": "All",
+                    "numberOfPlayers": "1+",
+                    "time": "10",
+                    "focus": "Passing",
+                    "description": "Warm-up drill focusing on passing technique and accuracy.",
+                    "scoring": "",
+                    "behaviors": "",
+                    "notesVariations": "Use different hand positions for variations. Increase distance for more challenge.",
+                    "keywords": "Passing, Warm-Up",
+                    "stepByStep": "1. Player stands with feet shoulder-width apart. 2. Toss the ball to self and pass to target. 3. Repeat for set duration."
+                }
+            ]
+        },
+        {
+            "plan_number":4,
+            "date_created": "2023-05-05",
+            "drills": [{
+                    "drillId":12,
+                    "name": "Setting Drills",
+                    "category": "Individual",
+                    "level": "All",
+                    "numberOfPlayers": "1+",
+                    "time": "10",
+                    "focus": "Setting",
+                    "description": "Drills to improve setting technique and accuracy.",
+                    "scoring": "",
+                    "behaviors": "",
+                    "notesVariations": "Focus on footwork and hand position. Increase complexity by adding movement.",
+                    "keywords": "Setting, Technique",
+                    "stepByStep": "1. Set the ball against a wall or to a target. 2. Focus on proper hand position and follow-through. 3. Repeat for set duration."
+                }
+            ]
+        },
+        {
+            "plan_number":5,
+            "date_created": "2023-08-12",
+            "drills": [{
+                    "drillId":13,
+                    "name": "Hitting Drills",
+                    "category": "Individual",
+                    "level": "All",
+                    "numberOfPlayers": "1+",
+                    "time": "15",
+                    "focus": "Hitting",
+                    "description": "Drills to improve hitting technique and power.",
+                    "scoring": "",
+                    "behaviors": "",
+                    "notesVariations": "Focus on approach and timing. Use different angles and speeds for variation.",
+                    "keywords": "Hitting, Technique",
+                    "stepByStep": "1. Approach and hit to target or against a wall. 2. Focus on arm swing and contact point. 3. Repeat for set duration."
+                }
+            ]
+        },
+        {
+            "plan_number":6,
+            "date_created": "2023-10-30",
+            "drills": [{
+                    "drillId":14,
+                    "name": "Blocking Drills",
+                    "category": "Individual",
+                    "level": "All",
+                    "numberOfPlayers": "1+",
+                    "time": "10",
+                    "focus": "Blocking",
+                    "description": "Drills to improve blocking technique and timing.",
+                    "scoring": "",
+                    "behaviors": "",
+                    "notesVariations": "Focus on footwork and hand position. Increase challenge by timing the block with the hitter's approach.",
+                    "keywords": "Blocking, Technique",
+                    "stepByStep": "1. Practice footwork and hand positioning for blocking. 2. Time the block with the hitter's approach. 3. Repeat for set duration."
+                }
+            ]
+        },
+        {
+            "plan_number":7,
+            "date_created": "2023-12-20",
+            "drills": [{
+                    "drillId":15,
+                    "name": "Serve Receive Drills",
+                    "category": "Individual",
+                    "level": "All",
+                    "numberOfPlayers": "1+",
+                    "time": "10",
+                    "focus": "Serve Receive",
+                    "description": "Drills to improve serve receive technique and accuracy.",
+                    "scoring": "",
+                    "behaviors": "",
+                    "notesVariations": "Focus on footwork and platform angle. Increase challenge by adding movement.",
+                    "keywords": "Serve Receive, Technique",
+                    "stepByStep": "1. Pass balls to self or against a wall focusing on proper technique. 2. Practice footwork and platform angle. 3. Repeat for set duration."
+                }
+            ]
+        },
+        {
+            "plan_number":8,
+            "date_created": "2024-02-15",
+            "drills": [{
+                    "drillId":16,
+                    "name": "Transition Drills",
+                    "category": "Team",
+                    "level": "All",
+                    "numberOfPlayers": "6+",
+                    "time": "20",
+                    "focus": "Transition",
+                    "description": "Drills to improve transition from defense to offense and vice versa.",
+                    "scoring": "",
+                    "behaviors": "",
+                    "notesVariations": "Focus on quick movements and communication. Increase challenge by adding blockers and defenders.",
+                    "keywords": "Transition, Team",
+                    "stepByStep": "1. Start with a serve or attack. 2. Transition quickly between offense and defense. 3. Focus on communication and positioning. 4. Repeat for set duration."
+                }
+            ]
+        },
+        {
+            "plan_number":9,
+            "date_created": "2024-04-05",
+            "drills": [{
+                    "drillId":17,
+                    "name": "Scrimmage",
+                    "category": "Team",
+                    "level": "All",
+                    "numberOfPlayers": "6+",
+                    "time": "30",
+                    "focus": "Gameplay",
+                    "description": "Scrimmage to simulate game-like situations and practice team strategies.",
+                    "scoring": "",
+                    "behaviors": "",
+                    "notesVariations": "Adjust rules and scoring to focus on specific skills or situations. Encourage teamwork and communication.",
+                    "keywords": "Scrimmage, Gameplay",
+                    "stepByStep": "1. Divide players into teams. 2. Play a simulated game with set rules and objectives. 3. Rotate players and continue play for set duration."
+                }
+            ]
+        },
+        {
+            "plan_number":10,
+            "date_created": "2024-06-10",
+            "drills": [{
+                    "drillId":18,
+                    "name": "Conditioning Drills",
+                    "category": "Team",
+                    "level": "All",
+                    "numberOfPlayers": "6+",
+                    "time": "20",
+                    "focus": "Conditioning",
+                    "description": "Drills to improve overall fitness and endurance.",
+                    "scoring": "",
+                    "behaviors": "",
+                    "notesVariations": "Include cardio, strength, and agility exercises. Vary intensity and duration for challenge.",
+                    "keywords": "Conditioning, Fitness",
+                    "stepByStep": "1. Incorporate running, jumping, and agility exercises. 2. Focus on maintaining proper form and technique. 3. Repeat for set duration."
+                }
+            ]
+        }
+    ]
+}
